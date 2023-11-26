@@ -23,6 +23,18 @@ namespace ApplicationSettings_Тепляков
         public MainWindow()
         {
             InitializeComponent();
+            OpenPage(pages.setting);
+        }
+
+        public enum pages
+        {
+            setting
+        }
+
+        public void OpenPage(pages _pages)
+        {
+            if (_pages == pages.setting)
+                frame.Navigate(new Pages.Setting(this));
         }
     }
 }
