@@ -34,7 +34,7 @@ namespace ApplicationSettings_Тепляков
         public void OpenPage(pages _pages)
         {
             if (_pages == pages.setting)
-                frame.Navigate(new Pages.Setting(this));
+                frame.Navigate(new Pages.Settings(this));
         }
     }
 }
