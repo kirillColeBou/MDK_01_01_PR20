@@ -26,7 +26,6 @@ namespace ApplicationSettings_Тепляков.Pages
         public MainWindow mainWindow;
         System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
         ColorDialog colorDialog = new ColorDialog();
-        
 
         public Settings(MainWindow _main)
         {
@@ -68,7 +67,12 @@ namespace ApplicationSettings_Тепляков.Pages
 
         private void SelectColorText(object sender, RoutedEventArgs e)
         {
-
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                System.Drawing.Color color = colorDialog.Color;
+                gr_text.Background = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+                lb_text.Foreground = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+            }
         }
 
         private void SelectFonts(object sender, RoutedEventArgs e)
