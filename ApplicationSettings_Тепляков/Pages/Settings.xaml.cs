@@ -26,6 +26,7 @@ namespace ApplicationSettings_Тепляков.Pages
         public MainWindow mainWindow;
         System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
         ColorDialog colorDialog = new ColorDialog();
+        FontDialog fontDialog = new FontDialog();
 
         public Settings(MainWindow _main)
         {
@@ -71,13 +72,25 @@ namespace ApplicationSettings_Тепляков.Pages
             {
                 System.Drawing.Color color = colorDialog.Color;
                 gr_text.Background = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
-                lb_text.Foreground = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+                lb_header.Foreground = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
             }
         }
 
         private void SelectFonts(object sender, RoutedEventArgs e)
         {
-
+            if(fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fontFamily = fontDialog.Font.Name;
+                float fontSize = fontDialog.Font.Size;
+                System.Drawing.FontStyle fontStyle = fontDialog.Font.Style;
+                lb_fonts.FontFamily = new FontFamily(fontFamily);
+                lb_fonts.FontSize = fontSize;
+                if (fontStyle == System.Drawing.FontStyle.Bold)
+                    lb_fonts.FontWeight = FontWeights.Bold;
+                if (fontStyle == System.Drawing.FontStyle.Italic)
+                    lb_fonts.FontStyle = FontStyles.Italic;
+                lb_fonts.Content = fontFamily;
+            }
         }
     }
 }
